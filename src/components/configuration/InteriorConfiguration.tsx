@@ -32,129 +32,139 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
   ];
 
   return (
-    <div className="space-y-12">
-      {/* Interior Materials */}
-      <div>
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Interior Materials
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Choose from our selection of premium materials, each offering unique textures 
-            and comfort levels for the ultimate driving experience.
+    <div className="grid lg:grid-cols-2 gap-8 h-full">
+      {/* 3D Car Showcase */}
+      <div className="bg-card rounded-lg border border-border p-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-24 h-24 bg-primary rounded-lg flex items-center justify-center mx-auto mb-6">
+            <div className="text-primary-foreground text-3xl font-bold">3D</div>
+          </div>
+          <h3 className="text-2xl font-bold text-foreground mb-4">Interior Showcase</h3>
+          <p className="text-muted-foreground">
+            Interactive 3D interior view showing your material and theme selections in real-time.
           </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {materials.map((material) => {
-            const isSelected = configuration.interiorMaterial === material.id;
-            
-            return (
-              <Card 
-                key={material.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
-                  isSelected 
-                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
-                    : 'bg-card border-border hover:bg-accent/20'
-                }`}
-                onClick={() => updateConfiguration({ interiorMaterial: material.id })}
-              >
-                <CardContent className="p-6">
-                  <div 
-                    className="w-full h-24 rounded-lg mb-4 border border-border"
-                    style={{ background: material.texture }}
-                  />
-                  <h4 className="text-lg font-semibold text-foreground mb-2">{material.name}</h4>
-                  <p className="text-muted-foreground text-sm mb-3">{material.description}</p>
-                  <div className="text-primary font-medium">{material.price}</div>
-                </CardContent>
-              </Card>
-            );
-          })}
         </div>
       </div>
 
-      {/* Dashboard Finishes */}
-      <div>
-        <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Dashboard Finish
-          </h3>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Select the dashboard finish that complements your interior style and personal taste.
-          </p>
+      {/* Options Panel */}
+      <div className="space-y-8 overflow-y-auto">
+        {/* Interior Materials */}
+        <div>
+          <div className="mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+              Interior Materials
+            </h2>
+            <p className="text-muted-foreground">
+              Select premium materials that define your cabin's comfort and luxury. 
+              Each option is meticulously crafted for both aesthetics and durability.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {materials.map((material) => {
+              const isSelected = configuration.interiorMaterial === material.id;
+              
+              return (
+                <Card 
+                  key={material.id}
+                  className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
+                    isSelected 
+                      ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                      : 'bg-card border-border hover:bg-accent/20'
+                  }`}
+                  onClick={() => updateConfiguration({ interiorMaterial: material.id })}
+                >
+                  <CardContent className="p-4">
+                    <div className="aspect-square bg-gradient-to-br from-muted to-accent rounded-lg mb-4" />
+                    <h4 className="text-lg font-semibold text-foreground mb-2">{material.name}</h4>
+                    <p className="text-muted-foreground text-sm mb-3">{material.description}</p>
+                    <div className="text-primary font-medium">{material.price}</div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {dashboardFinishes.map((finish) => {
-            const isSelected = configuration.dashboardFinish === finish.id;
-            
-            return (
-              <Card 
-                key={finish.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
-                  isSelected 
-                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
-                    : 'bg-card border-border hover:bg-accent/20'
-                }`}
-                onClick={() => updateConfiguration({ dashboardFinish: finish.id })}
-              >
-                <CardContent className="p-4 text-center">
-                  <div 
-                    className="w-16 h-16 rounded-lg mx-auto mb-3 border border-border"
-                    style={{ backgroundColor: finish.color }}
-                  />
-                  <h4 className="text-sm font-medium text-foreground mb-1">{finish.name}</h4>
-                  <p className="text-xs text-muted-foreground">{finish.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </div>
+        {/* Dashboard Finishes */}
+        <div>
+          <div className="mb-6">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+              Dashboard Finish
+            </h3>
+            <p className="text-muted-foreground">
+              Choose the perfect dashboard finish to complement your interior style.
+            </p>
+          </div>
 
-      {/* Color Themes */}
-      <div>
-        <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Interior Color Theme
-          </h3>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Choose a color theme that sets the mood and atmosphere of your cabin.
-          </p>
+          <div className="grid grid-cols-3 gap-3">
+            {dashboardFinishes.map((finish) => {
+              const isSelected = configuration.dashboardFinish === finish.id;
+              
+              return (
+                <Card 
+                  key={finish.id}
+                  className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
+                    isSelected 
+                      ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                      : 'bg-card border-border hover:bg-accent/20'
+                  }`}
+                  onClick={() => updateConfiguration({ dashboardFinish: finish.id })}
+                >
+                  <CardContent className="p-3 text-center">
+                    <div className="w-16 h-16 rounded-lg mx-auto mb-3 border-2 border-border bg-gradient-to-br from-muted to-accent" />
+                    <h4 className="text-sm font-medium text-foreground mb-1">{finish.name}</h4>
+                    <p className="text-xs text-muted-foreground">{finish.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {colorThemes.map((theme) => {
-            const isSelected = configuration.interiorTheme === theme.id;
-            
-            return (
-              <Card 
-                key={theme.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
-                  isSelected 
-                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
-                    : 'bg-card border-border hover:bg-accent/20'
-                }`}
-                onClick={() => updateConfiguration({ interiorTheme: theme.id })}
-              >
-                <CardContent className="p-6 text-center">
-                  <div className="flex gap-2 justify-center mb-4">
-                    <div 
-                      className="w-8 h-8 rounded-full border border-border"
-                      style={{ backgroundColor: theme.primary }}
-                    />
-                    <div 
-                      className="w-8 h-8 rounded-full border border-border"
-                      style={{ backgroundColor: theme.secondary }}
-                    />
-                  </div>
-                  <h4 className="text-lg font-semibold text-foreground mb-2">{theme.name}</h4>
-                  <p className="text-muted-foreground text-sm">{theme.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
+        {/* Interior Themes */}
+        <div>
+          <div className="mb-6">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+              Interior Theme
+            </h3>
+            <p className="text-muted-foreground">
+              Select a cohesive color theme that reflects your personal style and preference.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {colorThemes.map((theme) => {
+              const isSelected = configuration.interiorTheme === theme.id;
+              
+              return (
+                <Card 
+                  key={theme.id}
+                  className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
+                    isSelected 
+                      ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                      : 'bg-card border-border hover:bg-accent/20'
+                  }`}
+                  onClick={() => updateConfiguration({ interiorTheme: theme.id })}
+                >
+                  <CardContent className="p-4">
+                    <div className="flex gap-2 mb-4">
+                      <div 
+                        className="flex-1 h-8 rounded border-2 border-border"
+                        style={{ backgroundColor: theme.primary }}
+                      />
+                      <div 
+                        className="flex-1 h-8 rounded border-2 border-border"
+                        style={{ backgroundColor: theme.secondary }}
+                      />
+                    </div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">{theme.name}</h4>
+                    <p className="text-muted-foreground text-sm">{theme.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
