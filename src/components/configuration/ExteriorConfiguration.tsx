@@ -37,10 +37,10 @@ const ExteriorConfiguration = ({ configuration, updateConfiguration }: ExteriorC
       {/* Paint Colors */}
       <div>
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Exterior Color
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Choose the perfect color to express your style. Each color is carefully crafted 
             to enhance the vehicle's distinctive design.
           </p>
@@ -53,20 +53,20 @@ const ExteriorConfiguration = ({ configuration, updateConfiguration }: ExteriorC
             return (
               <Card 
                 key={color.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
                   isSelected 
-                    ? 'ring-2 ring-blue-400 bg-blue-500/10 border-blue-400' 
-                    : 'bg-white/5 border-gray-700 hover:bg-white/10'
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
                 }`}
                 onClick={() => updateConfiguration({ exteriorColor: color.id })}
               >
                 <CardContent className="p-4 text-center">
                   <div 
-                    className="w-16 h-16 rounded-full mx-auto mb-3 border-2 border-gray-600"
+                    className="w-16 h-16 rounded-full mx-auto mb-3 border-2 border-border"
                     style={{ backgroundColor: color.hex }}
                   />
-                  <h4 className="text-sm font-medium text-white mb-1">{color.name}</h4>
-                  <p className="text-xs text-blue-400">{color.price}</p>
+                  <h4 className="text-sm font-medium text-foreground mb-1">{color.name}</h4>
+                  <p className="text-xs text-primary">{color.price}</p>
                 </CardContent>
               </Card>
             );
@@ -77,10 +77,10 @@ const ExteriorConfiguration = ({ configuration, updateConfiguration }: ExteriorC
       {/* Accent Colors */}
       <div>
         <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Accent Details
           </h3>
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Add distinctive touches with accent colors for trim elements and mirror caps.
           </p>
         </div>
@@ -92,19 +92,19 @@ const ExteriorConfiguration = ({ configuration, updateConfiguration }: ExteriorC
             return (
               <Card 
                 key={color.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
                   isSelected 
-                    ? 'ring-2 ring-blue-400 bg-blue-500/10 border-blue-400' 
-                    : 'bg-white/5 border-gray-700 hover:bg-white/10'
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
                 }`}
                 onClick={() => updateConfiguration({ accentColor: color.id })}
               >
                 <CardContent className="p-4 text-center">
                   <div 
-                    className="w-12 h-12 rounded-lg mx-auto mb-3 border-2 border-gray-600"
+                    className="w-12 h-12 rounded-lg mx-auto mb-3 border-2 border-border"
                     style={{ backgroundColor: color.hex }}
                   />
-                  <h4 className="text-sm font-medium text-white">{color.name}</h4>
+                  <h4 className="text-sm font-medium text-foreground">{color.name}</h4>
                 </CardContent>
               </Card>
             );
@@ -115,10 +115,10 @@ const ExteriorConfiguration = ({ configuration, updateConfiguration }: ExteriorC
       {/* Caliper Colors */}
       <div>
         <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Brake Calipers
           </h3>
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Make a statement with colored brake calipers that complement your vehicle's style.
           </p>
         </div>
@@ -130,20 +130,20 @@ const ExteriorConfiguration = ({ configuration, updateConfiguration }: ExteriorC
             return (
               <Card 
                 key={color.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
                   isSelected 
-                    ? 'ring-2 ring-blue-400 bg-blue-500/10 border-blue-400' 
-                    : 'bg-white/5 border-gray-700 hover:bg-white/10'
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
                 }`}
                 onClick={() => updateConfiguration({ caliperColor: color.id })}
               >
                 <CardContent className="p-4 text-center">
                   <div 
-                    className="w-12 h-12 rounded-full mx-auto mb-3 border-2 border-gray-600"
+                    className="w-12 h-12 rounded-full mx-auto mb-3 border-2 border-border"
                     style={{ backgroundColor: color.hex }}
                   />
-                  <h4 className="text-sm font-medium text-white mb-1">{color.name}</h4>
-                  <p className="text-xs text-blue-400">{color.price}</p>
+                  <h4 className="text-sm font-medium text-foreground mb-1">{color.name}</h4>
+                  <p className="text-xs text-primary">{color.price}</p>
                 </CardContent>
               </Card>
             );

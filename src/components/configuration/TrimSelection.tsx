@@ -77,10 +77,10 @@ const TrimSelection = ({ configuration, updateConfiguration }: TrimSelectionProp
       {/* Trim Selection */}
       <div>
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Choose Your Trim Level
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Select the trim level that best suits your lifestyle and preferences. 
             Each trim offers a unique combination of features and styling.
           </p>
@@ -94,37 +94,37 @@ const TrimSelection = ({ configuration, updateConfiguration }: TrimSelectionProp
             return (
               <Card 
                 key={trim.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 relative overflow-hidden ${
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 relative overflow-hidden shadow-lg ${
                   isSelected 
-                    ? 'ring-2 ring-blue-400 bg-blue-500/10 border-blue-400' 
-                    : 'bg-white/5 border-gray-700 hover:bg-white/10'
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
                 }`}
                 onClick={() => updateConfiguration({ trim: trim.id })}
               >
                 {trim.popular && (
-                  <Badge className="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white z-10">
+                  <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground z-10">
                     Popular
                   </Badge>
                 )}
                 
                 <CardContent className="p-6">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${trim.gradient} rounded-lg flex items-center justify-center mb-4`}>
-                    <IconComponent className="w-6 h-6 text-white" />
+                  <div className={`w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4`}>
+                    <IconComponent className="w-6 h-6 text-primary-foreground" />
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-2">{trim.name}</h3>
-                  <p className="text-gray-400 text-sm mb-4">{trim.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-2">{trim.name}</h3>
+                  <p className="text-muted-foreground text-sm mb-4">{trim.description}</p>
                   
                   <div className="space-y-2 mb-4">
                     {trim.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
-                        <span className="text-xs text-gray-300">{feature}</span>
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                        <span className="text-xs text-muted-foreground">{feature}</span>
                       </div>
                     ))}
                   </div>
                   
-                  <div className="text-lg font-semibold text-white">{trim.price}</div>
+                  <div className="text-lg font-semibold text-foreground">{trim.price}</div>
                 </CardContent>
               </Card>
             );
@@ -135,10 +135,10 @@ const TrimSelection = ({ configuration, updateConfiguration }: TrimSelectionProp
       {/* Driveline Selection */}
       <div>
         <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Select Driveline
           </h3>
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Choose the driveline configuration that matches your driving needs and performance expectations.
           </p>
         </div>
@@ -150,17 +150,17 @@ const TrimSelection = ({ configuration, updateConfiguration }: TrimSelectionProp
             return (
               <Card 
                 key={option.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
                   isSelected 
-                    ? 'ring-2 ring-blue-400 bg-blue-500/10 border-blue-400' 
-                    : 'bg-white/5 border-gray-700 hover:bg-white/10'
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
                 }`}
                 onClick={() => updateConfiguration({ driveline: option.id })}
               >
                 <CardContent className="p-6 text-center">
-                  <h4 className="text-lg font-semibold text-white mb-2">{option.name}</h4>
-                  <p className="text-gray-400 text-sm mb-4">{option.description}</p>
-                  <div className="text-blue-400 font-medium">{option.price}</div>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">{option.name}</h4>
+                  <p className="text-muted-foreground text-sm mb-4">{option.description}</p>
+                  <div className="text-primary font-medium">{option.price}</div>
                 </CardContent>
               </Card>
             );

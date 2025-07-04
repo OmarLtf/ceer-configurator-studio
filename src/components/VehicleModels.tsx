@@ -46,13 +46,13 @@ const VehicleModels = ({ onModelSelect }: VehicleModelsProps) => {
   ];
 
   return (
-    <section className="py-20 px-6">
+    <section className="py-20 px-6 bg-muted/30">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
             Choose Your Model
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Select from our range of premium electric vehicles, each designed to deliver 
             uncompromising performance and luxury.
           </p>
@@ -64,7 +64,7 @@ const VehicleModels = ({ onModelSelect }: VehicleModelsProps) => {
             return (
               <Card 
                 key={model.id}
-                className="group bg-white/5 border-gray-700 backdrop-blur-sm hover:bg-white/10 transition-all duration-500 hover:scale-[1.02] overflow-hidden"
+                className="group bg-card border-border backdrop-blur-sm hover:bg-accent/20 transition-all duration-500 hover:scale-[1.02] overflow-hidden shadow-lg"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img 
@@ -72,38 +72,38 @@ const VehicleModels = ({ onModelSelect }: VehicleModelsProps) => {
                     alt={model.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${model.gradient} opacity-20`} />
-                  <Badge className={`absolute top-4 left-4 bg-gradient-to-r ${model.gradient} text-white border-none`}>
+                  <div className={`absolute inset-0 bg-gradient-to-t ${model.gradient} opacity-10`} />
+                  <Badge className={`absolute top-4 left-4 bg-primary text-primary-foreground border-none`}>
                     {model.type}
                   </Badge>
                 </div>
                 
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-10 h-10 bg-gradient-to-r ${model.gradient} rounded-lg flex items-center justify-center`}>
-                      <IconComponent className="w-5 h-5 text-white" />
+                    <div className={`w-10 h-10 bg-primary rounded-lg flex items-center justify-center`}>
+                      <IconComponent className="w-5 h-5 text-primary-foreground" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{model.name}</h3>
+                    <h3 className="text-2xl font-bold text-foreground">{model.name}</h3>
                   </div>
                   
-                  <p className="text-gray-400 mb-6 leading-relaxed">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
                     {model.description}
                   </p>
                   
                   <div className="space-y-3 mb-6">
                     {model.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
-                        <span className="text-sm text-gray-300">{feature}</span>
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                        <span className="text-sm text-muted-foreground">{feature}</span>
                       </div>
                     ))}
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-lg font-semibold text-white">{model.price}</span>
+                    <span className="text-lg font-semibold text-foreground">{model.price}</span>
                     <Button 
                       onClick={() => onModelSelect(model.id)}
-                      className={`bg-gradient-to-r ${model.gradient} hover:opacity-90 text-white group`}
+                      className={`bg-primary hover:bg-primary/90 text-primary-foreground group`}
                     >
                       Configure
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -72,31 +72,31 @@ const ConfigurationWizard = ({ modelId, onBack }: ConfigurationWizardProps) => {
   const progress = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-accent/10">
       {/* Header */}
-      <header className="border-b border-gray-800">
+      <header className="border-b border-border bg-card/50 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Button 
                 variant="ghost" 
                 onClick={onBack}
-                className="text-gray-400 hover:text-white"
+                className="text-muted-foreground hover:text-foreground"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Models
               </Button>
-              <div className="h-6 w-px bg-gray-700" />
-              <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              <div className="h-6 w-px bg-border" />
+              <div className="text-xl font-bold text-foreground tracking-wider">
                 CEER
               </div>
             </div>
             
             <div className="flex items-center gap-6">
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-muted-foreground">
                 Step {currentStep + 1} of {steps.length}
               </div>
-              <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-black text-sm">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground text-sm">
                 عربي
               </Button>
             </div>
@@ -105,11 +105,11 @@ const ConfigurationWizard = ({ modelId, onBack }: ConfigurationWizardProps) => {
       </header>
 
       {/* Progress Bar */}
-      <div className="border-b border-gray-800">
+      <div className="border-b border-border bg-card/30 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center gap-4 mb-4">
-            <span className="text-sm font-medium text-gray-300">Configuration Progress</span>
-            <span className="text-sm text-gray-500">{Math.round(progress)}% Complete</span>
+            <span className="text-sm font-medium text-foreground">Configuration Progress</span>
+            <span className="text-sm text-muted-foreground">{Math.round(progress)}% Complete</span>
           </div>
           <Progress value={progress} className="h-2" />
           
@@ -119,16 +119,16 @@ const ConfigurationWizard = ({ modelId, onBack }: ConfigurationWizardProps) => {
               <div 
                 key={step.name}
                 className={`flex flex-col items-center cursor-pointer transition-colors ${
-                  index <= currentStep ? 'text-blue-400' : 'text-gray-500'
+                  index <= currentStep ? 'text-primary' : 'text-muted-foreground'
                 }`}
                 onClick={() => setCurrentStep(index)}
               >
                 <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-medium mb-2 transition-colors ${
                   index < currentStep 
-                    ? 'bg-blue-400 border-blue-400 text-black' 
+                    ? 'bg-primary border-primary text-primary-foreground' 
                     : index === currentStep
-                    ? 'border-blue-400 text-blue-400'
-                    : 'border-gray-500 text-gray-500'
+                    ? 'border-primary text-primary'
+                    : 'border-muted text-muted-foreground'
                 }`}>
                   {index + 1}
                 </div>
@@ -149,24 +149,24 @@ const ConfigurationWizard = ({ modelId, onBack }: ConfigurationWizardProps) => {
       </main>
 
       {/* Navigation Footer */}
-      <footer className="border-t border-gray-800">
+      <footer className="border-t border-border bg-card/30 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-6">
           <div className="flex justify-between items-center">
             <Button
               variant="outline"
               onClick={prevStep}
               disabled={currentStep === 0}
-              className="border-gray-600 text-gray-300 hover:bg-gray-800"
+              className="border-border text-muted-foreground hover:bg-accent hover:text-foreground"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Previous
             </Button>
             
             <div className="text-center">
-              <div className="text-lg font-semibold text-white">
+              <div className="text-lg font-semibold text-foreground">
                 {steps[currentStep].name}
               </div>
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-muted-foreground">
                 Configuring {modelId.toUpperCase()}
               </div>
             </div>
@@ -174,7 +174,7 @@ const ConfigurationWizard = ({ modelId, onBack }: ConfigurationWizardProps) => {
             <Button
               onClick={nextStep}
               disabled={currentStep === steps.length - 1}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
               Next
               <ArrowRight className="w-4 h-4 ml-2" />

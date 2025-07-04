@@ -36,10 +36,10 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
       {/* Interior Materials */}
       <div>
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Interior Materials
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Choose from our selection of premium materials, each offering unique textures 
             and comfort levels for the ultimate driving experience.
           </p>
@@ -52,21 +52,21 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
             return (
               <Card 
                 key={material.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
                   isSelected 
-                    ? 'ring-2 ring-blue-400 bg-blue-500/10 border-blue-400' 
-                    : 'bg-white/5 border-gray-700 hover:bg-white/10'
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
                 }`}
                 onClick={() => updateConfiguration({ interiorMaterial: material.id })}
               >
                 <CardContent className="p-6">
                   <div 
-                    className="w-full h-24 rounded-lg mb-4 border border-gray-600"
+                    className="w-full h-24 rounded-lg mb-4 border border-border"
                     style={{ background: material.texture }}
                   />
-                  <h4 className="text-lg font-semibold text-white mb-2">{material.name}</h4>
-                  <p className="text-gray-400 text-sm mb-3">{material.description}</p>
-                  <div className="text-blue-400 font-medium">{material.price}</div>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">{material.name}</h4>
+                  <p className="text-muted-foreground text-sm mb-3">{material.description}</p>
+                  <div className="text-primary font-medium">{material.price}</div>
                 </CardContent>
               </Card>
             );
@@ -77,10 +77,10 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
       {/* Dashboard Finishes */}
       <div>
         <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Dashboard Finish
           </h3>
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Select the dashboard finish that complements your interior style and personal taste.
           </p>
         </div>
@@ -92,20 +92,20 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
             return (
               <Card 
                 key={finish.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
                   isSelected 
-                    ? 'ring-2 ring-blue-400 bg-blue-500/10 border-blue-400' 
-                    : 'bg-white/5 border-gray-700 hover:bg-white/10'
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
                 }`}
                 onClick={() => updateConfiguration({ dashboardFinish: finish.id })}
               >
                 <CardContent className="p-4 text-center">
                   <div 
-                    className="w-16 h-16 rounded-lg mx-auto mb-3 border border-gray-600"
+                    className="w-16 h-16 rounded-lg mx-auto mb-3 border border-border"
                     style={{ backgroundColor: finish.color }}
                   />
-                  <h4 className="text-sm font-medium text-white mb-1">{finish.name}</h4>
-                  <p className="text-xs text-gray-400">{finish.description}</p>
+                  <h4 className="text-sm font-medium text-foreground mb-1">{finish.name}</h4>
+                  <p className="text-xs text-muted-foreground">{finish.description}</p>
                 </CardContent>
               </Card>
             );
@@ -116,10 +116,10 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
       {/* Color Themes */}
       <div>
         <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Interior Color Theme
           </h3>
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Choose a color theme that sets the mood and atmosphere of your cabin.
           </p>
         </div>
@@ -131,26 +131,26 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
             return (
               <Card 
                 key={theme.id}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 shadow-lg ${
                   isSelected 
-                    ? 'ring-2 ring-blue-400 bg-blue-500/10 border-blue-400' 
-                    : 'bg-white/5 border-gray-700 hover:bg-white/10'
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
                 }`}
                 onClick={() => updateConfiguration({ interiorTheme: theme.id })}
               >
                 <CardContent className="p-6 text-center">
                   <div className="flex gap-2 justify-center mb-4">
                     <div 
-                      className="w-8 h-8 rounded-full border border-gray-600"
+                      className="w-8 h-8 rounded-full border border-border"
                       style={{ backgroundColor: theme.primary }}
                     />
                     <div 
-                      className="w-8 h-8 rounded-full border border-gray-600"
+                      className="w-8 h-8 rounded-full border border-border"
                       style={{ backgroundColor: theme.secondary }}
                     />
                   </div>
-                  <h4 className="text-lg font-semibold text-white mb-2">{theme.name}</h4>
-                  <p className="text-gray-400 text-sm">{theme.description}</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">{theme.name}</h4>
+                  <p className="text-muted-foreground text-sm">{theme.description}</p>
                 </CardContent>
               </Card>
             );
