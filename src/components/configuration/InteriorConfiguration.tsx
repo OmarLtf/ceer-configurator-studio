@@ -1,6 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ConfigurationState } from "@/components/ConfigurationWizard";
+import Car3DViewer from "@/components/Car3DViewer";
 
 interface InteriorConfigurationProps {
   configuration: ConfigurationState;
@@ -8,7 +9,7 @@ interface InteriorConfigurationProps {
   modelId: string;
 }
 
-const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorConfigurationProps) => {
+const InteriorConfiguration = ({ configuration, updateConfiguration, modelId }: InteriorConfigurationProps) => {
   const materials = [
     { id: "fabric", name: "Premium Fabric", description: "Sustainable and comfortable", price: "Included", texture: "linear-gradient(45deg, #6B7280 25%, transparent 25%)" },
     { id: "leather", name: "Nappa Leather", description: "Luxurious full-grain leather", price: "+$3,000", texture: "linear-gradient(90deg, #8B4513 0%, #A0522D 100%)" },
@@ -34,17 +35,11 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
   return (
     <div className="grid lg:grid-cols-5 gap-8 h-full">
       {/* 3D Car Showcase - Larger */}
-      <div className="lg:col-span-3 bg-card rounded-lg border border-border p-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-32 h-32 bg-primary rounded-lg flex items-center justify-center mx-auto mb-6">
-            <div className="text-primary-foreground text-4xl font-bold">3D</div>
-          </div>
-          <h3 className="text-3xl font-bold text-foreground mb-4">Interior Showcase</h3>
-          <p className="text-muted-foreground text-lg">
-            Interactive 3D interior view showing your material and theme selections in real-time.
-          </p>
-        </div>
-      </div>
+      <Car3DViewer 
+        className="lg:col-span-3 h-[600px]"
+        modelPath={`${modelId}.glb`}
+        showControls={true}
+      />
 
       {/* Options Panel - Smaller and Scrollable */}
       <div className="lg:col-span-2 space-y-6 overflow-y-auto max-h-screen pr-4">

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ConfigurationState } from "@/components/ConfigurationWizard";
 import { Download, Share2, Save, ShoppingCart, Eye } from "lucide-react";
+import Car3DViewer from "@/components/Car3DViewer";
 
 interface ConfigurationSummaryProps {
   configuration: ConfigurationState;
@@ -61,21 +62,11 @@ const ConfigurationSummary = ({ configuration, modelId }: ConfigurationSummaryPr
   return (
     <div className="grid lg:grid-cols-5 gap-8 h-full">
       {/* 3D Car Showcase - Larger */}
-      <div className="lg:col-span-3 bg-card rounded-lg border border-border p-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-32 h-32 bg-primary rounded-lg flex items-center justify-center mx-auto mb-6">
-            <div className="text-primary-foreground text-4xl font-bold">3D</div>
-          </div>
-          <h3 className="text-3xl font-bold text-foreground mb-4">Final Configuration</h3>
-          <p className="text-muted-foreground text-lg">
-            Complete 3D visualization of your configured vehicle with all selected options.
-          </p>
-          <Button variant="outline" className="mt-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            <Eye className="w-4 h-4 mr-2" />
-            360° View
-          </Button>
-        </div>
-      </div>
+      <Car3DViewer 
+        className="lg:col-span-3 h-[600px]"
+        modelPath={`${modelId}.glb`}
+        showControls={true}
+      />
 
       {/* Summary Panel - Smaller and Scrollable */}
       <div className="lg:col-span-2 space-y-6 overflow-y-auto max-h-screen pr-4">

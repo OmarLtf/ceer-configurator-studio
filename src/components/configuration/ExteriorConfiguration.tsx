@@ -1,6 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ConfigurationState } from "@/components/ConfigurationWizard";
+import Car3DViewer from "@/components/Car3DViewer";
 
 interface ExteriorConfigurationProps {
   configuration: ConfigurationState;
@@ -8,7 +9,7 @@ interface ExteriorConfigurationProps {
   modelId: string;
 }
 
-const ExteriorConfiguration = ({ configuration, updateConfiguration }: ExteriorConfigurationProps) => {
+const ExteriorConfiguration = ({ configuration, updateConfiguration, modelId }: ExteriorConfigurationProps) => {
   const paintColors = [
     { id: "white", name: "Arctic White", hex: "#FFFFFF", price: "Included" },
     { id: "black", name: "Midnight Black", hex: "#000000", price: "Included" },
@@ -35,17 +36,26 @@ const ExteriorConfiguration = ({ configuration, updateConfiguration }: ExteriorC
   return (
     <div className="grid lg:grid-cols-5 gap-8 h-full">
       {/* 3D Car Showcase - Larger */}
-      <div className="lg:col-span-3 bg-card rounded-lg border border-border p-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-32 h-32 bg-primary rounded-lg flex items-center justify-center mx-auto mb-6">
-            <div className="text-primary-foreground text-4xl font-bold">3D</div>
-          </div>
-          <h3 className="text-3xl font-bold text-foreground mb-4">3D Vehicle Showcase</h3>
-          <p className="text-muted-foreground text-lg">
-            Interactive 3D model will be displayed here showing your exterior color selections in real-time.
-          </p>
-        </div>
-      </div>
+      <Car3DViewer 
+        className="lg:col-span-3 h-[600px]"
+        modelPath={`${modelId}.glb`}
+        showControls={true}
+        onColorChange={(colorName) => {
+          // Map 3D color names back to configuration
+          const colorMapping: Record<string, string> = {
+            'Red': 'red',
+            'White': 'white', 
+            'Pink': 'red',
+            'Grey': 'gray',
+            'Blue': 'blue',
+            'Black': 'black'
+          };
+          const configColor = colorMapping[colorName];
+          if (configColor) {
+            updateConfiguration({ exteriorColor: configColor });
+          }
+        }}
+      />
 
       {/* Options Panel - Smaller and Scrollable */}
       <div className="lg:col-span-2 space-y-6 overflow-y-auto max-h-screen pr-4">
