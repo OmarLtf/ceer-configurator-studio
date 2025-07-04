@@ -51,7 +51,8 @@ export class CarEngine {
 
   public async loadCarModel(modelPath: string): Promise<void> {
     try {
-      await SceneLoader.AppendAsync("/models/cars/", modelPath, this.scene);
+      console.log("Attempting to load model:", modelPath);
+      await SceneLoader.AppendAsync("./models/cars/", modelPath, this.scene);
       
       // Stop all animations initially
       this.scene.animationGroups.forEach(group => group.stop());
@@ -64,6 +65,7 @@ export class CarEngine {
       console.log("Car model loaded successfully");
     } catch (error) {
       console.error("Error loading car model:", error);
+      throw error;
     }
   }
 
