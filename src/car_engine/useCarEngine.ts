@@ -25,6 +25,8 @@ export const useCarEngine = (modelPath?: string): CarEngineHook => {
   useEffect(() => {
     if (!canvasRef.current) return;
 
+    console.log("useCarEngine - Initializing engine");
+
     // Initialize car engine
     const engine = new CarEngine(canvasRef.current);
     carEngineRef.current = engine;
@@ -34,7 +36,10 @@ export const useCarEngine = (modelPath?: string): CarEngineHook => {
 
     // Load model if provided
     if (modelPath) {
+      console.log("useCarEngine - modelPath provided:", modelPath);
       loadModel(modelPath);
+    } else {
+      console.log("useCarEngine - No modelPath provided");
     }
 
     return () => {
@@ -45,13 +50,16 @@ export const useCarEngine = (modelPath?: string): CarEngineHook => {
   const loadModel = async (path: string) => {
     if (!carEngineRef.current) return;
 
+    console.log("useCarEngine - loadModel called with path:", path);
     setIsLoading(true);
     setError(null);
 
     try {
       await carEngineRef.current.loadCarModel(path);
       setAvailableColors(carEngineRef.current.getAvailableColors());
+      console.log("useCarEngine - Model loaded successfully");
     } catch (err) {
+      console.error("useCarEngine - Error loading model:", err);
       setError(err instanceof Error ? err.message : 'Failed to load model');
     } finally {
       setIsLoading(false);

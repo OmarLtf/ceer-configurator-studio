@@ -18,6 +18,8 @@ const Car3DViewer: React.FC<Car3DViewerProps> = ({
   showControls = false,
   onColorChange 
 }) => {
+  console.log("Car3DViewer - modelPath:", modelPath);
+  
   const {
     canvasRef,
     availableColors,
