@@ -32,22 +32,22 @@ const InteriorConfiguration = ({ configuration, updateConfiguration }: InteriorC
   ];
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 h-full">
-      {/* 3D Car Showcase */}
-      <div className="bg-card rounded-lg border border-border p-8 flex items-center justify-center">
+    <div className="grid lg:grid-cols-5 gap-8 h-full">
+      {/* 3D Car Showcase - Larger */}
+      <div className="lg:col-span-3 bg-card rounded-lg border border-border p-8 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-24 h-24 bg-primary rounded-lg flex items-center justify-center mx-auto mb-6">
-            <div className="text-primary-foreground text-3xl font-bold">3D</div>
+          <div className="w-32 h-32 bg-primary rounded-lg flex items-center justify-center mx-auto mb-6">
+            <div className="text-primary-foreground text-4xl font-bold">3D</div>
           </div>
-          <h3 className="text-2xl font-bold text-foreground mb-4">Interior Showcase</h3>
-          <p className="text-muted-foreground">
+          <h3 className="text-3xl font-bold text-foreground mb-4">Interior Showcase</h3>
+          <p className="text-muted-foreground text-lg">
             Interactive 3D interior view showing your material and theme selections in real-time.
           </p>
         </div>
       </div>
 
-      {/* Options Panel */}
-      <div className="space-y-8 overflow-y-auto">
+      {/* Options Panel - Smaller and Scrollable */}
+      <div className="lg:col-span-2 space-y-6 overflow-y-auto max-h-screen pr-4">
         {/* Interior Materials */}
         <div>
           <div className="mb-6">

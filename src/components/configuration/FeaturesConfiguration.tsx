@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
@@ -96,182 +95,166 @@ const FeaturesConfiguration = ({ configuration, updateConfiguration }: FeaturesC
   };
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 h-full">
-      {/* 3D Car Showcase */}
-      <div className="bg-card rounded-lg border border-border p-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-24 h-24 bg-primary rounded-lg flex items-center justify-center mx-auto mb-6">
-            <div className="text-primary-foreground text-3xl font-bold">3D</div>
-          </div>
-          <h3 className="text-2xl font-bold text-foreground mb-4">Feature Preview</h3>
-          <p className="text-muted-foreground">
-            Interactive view showing advanced features and technology integrations.
+    <div className="space-y-12">
+      {/* Features */}
+      <div>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Advanced Features
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Enhance your vehicle with cutting-edge technology and performance features 
+            designed to elevate your driving experience.
           </p>
+        </div>
+
+        <div className="space-y-8">
+          {featureCategories.map((category) => {
+            const IconComponent = category.icon;
+            return (
+              <div key={category.name}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                    <IconComponent className="w-5 h-5 text-primary-foreground" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">{category.name}</h3>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-4">
+                  {category.features.map((feature) => {
+                    const isSelected = configuration.features?.includes(feature.id) || false;
+                    
+                    return (
+                      <Card 
+                        key={feature.id}
+                        className={`cursor-pointer transition-all duration-300 ${
+                          isSelected 
+                            ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                            : 'bg-card border-border hover:bg-accent/20'
+                        }`}
+                        onClick={() => toggleFeature(feature.id)}
+                      >
+                        <CardContent className="p-4">
+                          <div className="flex items-start gap-3">
+                            <Checkbox 
+                              checked={isSelected}
+                              onChange={() => toggleFeature(feature.id)}
+                              className="mt-1"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-2">
+                                <h4 className="font-medium text-foreground">{feature.name}</h4>
+                                <span className="text-primary font-medium">{feature.price}</span>
+                              </div>
+                              <p className="text-muted-foreground text-sm">{feature.description}</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Options Panel */}
-      <div className="space-y-8 overflow-y-auto">
-        {/* Features */}
-        <div>
-          <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              Advanced Features
-            </h2>
-            <p className="text-muted-foreground">
-              Enhance your vehicle with cutting-edge technology and performance features 
-              designed to elevate your driving experience.
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            {featureCategories.map((category) => {
-              const IconComponent = category.icon;
-              return (
-                <div key={category.name}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                      <IconComponent className="w-4 h-4 text-primary-foreground" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground">{category.name}</h3>
-                  </div>
-                  
-                  <div className="grid gap-3">
-                    {category.features.map((feature) => {
-                      const isSelected = configuration.features?.includes(feature.id) || false;
-                      
-                      return (
-                        <Card 
-                          key={feature.id}
-                          className={`cursor-pointer transition-all duration-300 ${
-                            isSelected 
-                              ? 'ring-2 ring-primary bg-primary/5 border-primary' 
-                              : 'bg-card border-border hover:bg-accent/20'
-                          }`}
-                          onClick={() => toggleFeature(feature.id)}
-                        >
-                          <CardContent className="p-3">
-                            <div className="flex items-start gap-3">
-                              <Checkbox 
-                                checked={isSelected}
-                                onChange={() => toggleFeature(feature.id)}
-                                className="mt-1"
-                              />
-                              <div className="flex-1">
-                                <div className="flex items-center justify-between mb-1">
-                                  <h4 className="font-medium text-foreground text-sm">{feature.name}</h4>
-                                  <span className="text-primary font-medium text-sm">{feature.price}</span>
-                                </div>
-                                <p className="text-muted-foreground text-xs">{feature.description}</p>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+      {/* Connectivity Packages */}
+      <div>
+        <div className="text-center mb-8">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            Connectivity Packages
+          </h3>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Stay connected with our range of connectivity packages offering various levels of features and services.
+          </p>
         </div>
 
-        {/* Connectivity Packages */}
-        <div>
-          <div className="mb-6">
-            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-              Connectivity Packages
-            </h3>
-            <p className="text-muted-foreground">
-              Stay connected with our range of connectivity packages offering various levels of features and services.
-            </p>
-          </div>
-
-          <div className="grid gap-4">
-            {connectivityPackages.map((pkg) => {
-              const isSelected = configuration.connectivityPackage === pkg.id;
-              
-              return (
-                <Card 
-                  key={pkg.id}
-                  className={`cursor-pointer transition-all duration-300 hover:scale-105 relative ${
-                    isSelected 
-                      ? 'ring-2 ring-primary bg-primary/5 border-primary' 
-                      : 'bg-card border-border hover:bg-accent/20'
-                  }`}
-                  onClick={() => updateConfiguration({ connectivityPackage: pkg.id })}
-                >
-                  {pkg.popular && (
-                    <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
-                      Popular
-                    </Badge>
-                  )}
+        <div className="grid md:grid-cols-3 gap-6">
+          {connectivityPackages.map((pkg) => {
+            const isSelected = configuration.connectivityPackage === pkg.id;
+            
+            return (
+              <Card 
+                key={pkg.id}
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 relative ${
+                  isSelected 
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
+                }`}
+                onClick={() => updateConfiguration({ connectivityPackage: pkg.id })}
+              >
+                {pkg.popular && (
+                  <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground">
+                    Popular
+                  </Badge>
+                )}
+                
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-foreground mb-2">{pkg.name}</h4>
+                  <p className="text-muted-foreground mb-4">{pkg.description}</p>
                   
-                  <CardContent className="p-4">
-                    <h4 className="text-lg font-bold text-foreground mb-2">{pkg.name}</h4>
-                    <p className="text-muted-foreground mb-3 text-sm">{pkg.description}</p>
-                    
-                    <div className="text-xl font-bold text-primary mb-3">{pkg.price}</div>
-                    
-                    <div className="space-y-1">
-                      {pkg.features.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                          <span className="text-xs text-muted-foreground">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+                  <div className="text-2xl font-bold text-primary mb-4">{pkg.price}</div>
+                  
+                  <div className="space-y-2">
+                    {pkg.features.map((feature, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                        <span className="text-sm text-muted-foreground">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Accessories */}
+      <div>
+        <div className="text-center mb-8">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            Accessories
+          </h3>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Complete your vehicle with our selection of premium accessories designed for convenience and style.
+          </p>
         </div>
 
-        {/* Accessories */}
-        <div>
-          <div className="mb-6">
-            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-              Accessories
-            </h3>
-            <p className="text-muted-foreground">
-              Complete your vehicle with our selection of premium accessories designed for convenience and style.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            {accessories.map((accessory) => {
-              const isSelected = configuration.accessories?.includes(accessory.id) || false;
-              const IconComponent = accessory.icon;
-              
-              return (
-                <Card 
-                  key={accessory.id}
-                  className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
-                    isSelected 
-                      ? 'ring-2 ring-primary bg-primary/5 border-primary' 
-                      : 'bg-card border-border hover:bg-accent/20'
-                  }`}
-                  onClick={() => toggleAccessory(accessory.id)}
-                >
-                  <CardContent className="p-3 text-center">
-                    <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <IconComponent className="w-4 h-4 text-primary-foreground" />
-                    </div>
-                    <h4 className="text-xs font-medium text-foreground mb-1">{accessory.name}</h4>
-                    <p className="text-primary text-xs font-medium">{accessory.price}</p>
-                    
-                    <div className="mt-2">
-                      <Checkbox 
-                        checked={isSelected}
-                        onChange={() => toggleAccessory(accessory.id)}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {accessories.map((accessory) => {
+            const isSelected = configuration.accessories?.includes(accessory.id) || false;
+            const IconComponent = accessory.icon;
+            
+            return (
+              <Card 
+                key={accessory.id}
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 ${
+                  isSelected 
+                    ? 'ring-2 ring-primary bg-primary/5 border-primary' 
+                    : 'bg-card border-border hover:bg-accent/20'
+                }`}
+                onClick={() => toggleAccessory(accessory.id)}
+              >
+                <CardContent className="p-4 text-center">
+                  <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <IconComponent className="w-5 h-5 text-primary-foreground" />
+                  </div>
+                  <h4 className="text-sm font-medium text-foreground mb-1">{accessory.name}</h4>
+                  <p className="text-primary text-sm font-medium">{accessory.price}</p>
+                  
+                  <div className="mt-2">
+                    <Checkbox 
+                      checked={isSelected}
+                      onChange={() => toggleAccessory(accessory.id)}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </div>
